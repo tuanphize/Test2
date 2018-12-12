@@ -1,4 +1,4 @@
-package Viettel.Test2;
+package Testmaster.vn;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,11 +11,11 @@ private WebDriver driver;
 @FindBy(xpath="/html[1]/body[1]/main[1]/div[6]/div[1]/div[1]/div[3]/div[2]/div[1]/input[1]")
 public WebElement txtDangKy;
 @FindBy(css="button.next-btn-primary")
-public WebElement btnEmail;
+public WebElement btnEmailNgoai;
 @FindBy (xpath="/html[1]/body[1]/main[1]/div[6]/div[1]/div[1]/div[3]/div[2]/div[3]/span[1]")
 public WebElement txtError;
-@FindBy(css="div.footer:nth-child(6) div.container div:nth-child(1) div.subscription.col-sm-6 div.mod-input.error div.col-sm-3:nth-child(2) > button.next-btn-primary")
-public WebElement buttontDangKy;
+@FindBy(css="body.modal-open:nth-child(2) div.modal.fade.popover-dialog.form.extra-subscription-form.in:nth-child(3) div:nth-child(1) div.popover-body p:nth-child(1) > b:nth-child(1)")
+public WebElement textDongY;
 public TestObjectEmail(WebDriver driver) {
 	this.driver=driver;
 	PageFactory.initElements(driver, this);
