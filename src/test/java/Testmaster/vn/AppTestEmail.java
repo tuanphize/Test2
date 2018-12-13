@@ -33,30 +33,38 @@ public class AppTestEmail {
         driver.manage().window().maximize();
         driver.get("http://testmaster.vn/");
         this.obj=new TestObjectEmail(this.driver);
-        
+        JavascriptExecutor js=(JavascriptExecutor) driver;
+    	driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    	js.executeScript("scroll(0,400)");
+      
    
     }
 	 @After
 	    public void CloseTest() {
-	    //this.driver.close();
+	    driver.close();
 	    }
-	
+	@Ignore
 	@Test
+	//1.1
 	public void validateEmailDK() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		obj.txtDangKy.sendKeys("123");
 		obj.btnEmailNgoai.click();
 		assertTrue(obj.txtError.isDisplayed());
 		assertEquals(obj.txtError.getText(), "* Email không đúng định dạng");
 	}
-
+	//1.2
+	@Ignore
 	@Test
-	public void extraForm() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	public void ktTonTaiEmailK() {
+		obj.txtDangKy.sendKeys("nguyentuan23695@gmail.com");
+		obj.btnEmailNgoai.click();
+		assertTrue(obj.txtError.isDisplayed());
+		assertEquals(obj.txtError.getText(), "* Email đã tồn tại");
+	}
+	//1.3
+    @Ignore
+	@Test
+	public void extraFormAppear() {
 		obj.txtDangKy.sendKeys("nguyentuan23695@gmail.com");
 		obj.btnEmailNgoai.click();
 		assertTrue(obj.textDongY.isDisplayed());
@@ -64,4 +72,40 @@ public class AppTestEmail {
 				"Để phục vụ bạn được tốt hơn, bạn vui lòng cung cấp thêm các thông tin bên dưới.");
 
 	}
+	//2.1
+    @Ignore
+    @Test
+    public void hoTenExtraForm() {
+    	obj.txtDangKy.sendKeys("nguyentuan@gmail.com");
+    	obj.btnEmailNgoai.click();
+    	assertTrue(obj.textDongY.isDisplayed());
+    	obj.txthoTen.sendKeys("");
+    	assertEquals(obj.cbGioiTinh.getText(),"Không xác định");
+    	assertEquals(obj.cbLoaiTin.getText(),"Nhận tất cả các loại tin");
+    	assertEquals(obj.textDongY.getText(),"Bạn chưa nhập họ tên","");
+    	
+    }
+    //2.2
+    @Test
+    public void ktHoTenExtraform() throws InterruptedException {
+    	obj.txtDangKy.sendKeys("nguyentuan@gmail.com");
+    	obj.btnEmailNgoai.click();
+        obj.txthoTen.sendKeys("123");
+        obj.btnDongY.click();
+        Thread.sleep(1000);
+        assertTrue(obj.formDongY.isDisplayed());
+        //assertEquals(obj.textDongY.getText(),"Họ tên không đúng định dạng");
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
