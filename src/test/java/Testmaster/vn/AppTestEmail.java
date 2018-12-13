@@ -73,19 +73,21 @@ public class AppTestEmail {
 
 	}
 	//2.1
-    @Ignore
+    
     @Test
     public void hoTenExtraForm() {
-    	obj.txtDangKy.sendKeys("nguyentuan@gmail.com");
+    	obj.txtDangKy.sendKeys("nguyentuan11@gmail.com");
     	obj.btnEmailNgoai.click();
     	assertTrue(obj.textDongY.isDisplayed());
     	obj.txthoTen.sendKeys("");
-    	assertEquals(obj.cbGioiTinh.getText(),"Không xác định");
+        assertEquals(obj.cbGioiTinh.getText(),"Không xác định");
+    		System.out.println(obj.cbGioiTinh.getText());
     	assertEquals(obj.cbLoaiTin.getText(),"Nhận tất cả các loại tin");
     	assertEquals(obj.textDongY.getText(),"Bạn chưa nhập họ tên","");
     	
     }
     //2.2
+    @Ignore
     @Test
     public void ktHoTenExtraform() throws InterruptedException {
     	obj.txtDangKy.sendKeys("nguyentuan@gmail.com");
